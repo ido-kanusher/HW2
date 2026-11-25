@@ -2,7 +2,9 @@ package il.ac.tau.cs.software1.bigram;
 
 import java.io.IOException;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Locale;
 import java.io.File;
 
@@ -138,7 +140,26 @@ public class BigramModel {
      * @pre: fileName is a legal file path
      */
     public void saveModel(String fileName) throws IOException { // Question 3
-        // TODO: implement
+        File vocFile = new File(fileName + VOC_FILE_SUFFIX);
+        FileWriter vocWriter = new FileWriter(vocFile);
+        BufferedWriter bufferedWriterVoc = new BufferedWriter(vocWriter);
+        bufferedWriterVoc.write(mVocabulary.length + " words\n");
+        for (int i = 0; i < mVocabulary.length; i++) {
+            bufferedWriterVoc.write(i + "," + mVocabulary[i] + "\n");
+        }
+        bufferedWriterVoc.close();
+
+        File countsFile = new File(fileName + COUNTS_FILE_SUFFIX);
+        FileWriter countsWriter = new FileWriter(countsFile);
+        BufferedWriter bufferedWriterCounts = new BufferedWriter(countsWriter);
+        for (int i = 0; i < mBigramCounts.length; i++) {
+            for (int j = 0; j < mBigramCounts[i].length; j++) {
+                if (mBigramCounts[i][j] > 0) {
+                    bufferedWriterCounts.write(i + "," + j + ":" + mBigramCounts[i][j] + "\n");
+                }
+            }
+        }
+        bufferedWriterCounts.close();
     }
 
     /*
