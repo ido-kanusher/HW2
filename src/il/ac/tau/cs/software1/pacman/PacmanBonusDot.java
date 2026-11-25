@@ -4,6 +4,9 @@ import il.ac.tau.cs.software1.components.*;
 
 public class PacmanBonusDot extends PacmanBonus {
 
+	private static final float WEIGHT = 1.0f;
+	private static final float PRICE = 12.0f;
+
 	public PacmanBonusDot(PacmanGridComponent initialPosition) {
 		super(initialPosition);
 		this.imageComponent = new ImageComponent("bonus-dot");
@@ -14,13 +17,11 @@ public class PacmanBonusDot extends PacmanBonus {
 
 	@Override
 	public float getWeight() {
-		// TODO: implement
-		return 0.f;
+		return WEIGHT;
 	}
 
 	@Override
 	public float getPrice() {
-		// TODO: implement
-		return 0.f;
+		return PRICE;
 	}
 }
